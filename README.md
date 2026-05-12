@@ -27,4 +27,4 @@ Dự án này được Fork và lưu trữ (Backup) nhằm mục đích học t�
 Đây là lệnh cài đặt đã được tối ưu hóa để lấy script từ kho lưu trữ của bạn. Đảm bảo bạn đã sửa file `install.sh` để trỏ đúng về repo này.
 
 ```bash
-wget -N [https://raw.githubusercontent.com/pkd11011/Xrayr0.9.5/master/install.sh](https://raw.githubusercontent.com/pkd11011/Xrayr0.9.5/master/install.sh) && bash install.sh
+wget -N https://raw.githubusercontent.com/pkd11011/Xrayr0.9.5/master/install.sh && bash install.sh
