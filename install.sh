@@ -1,29 +1,33 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# --- THAY ĐỔI Ở ĐÂY ---
 TAG="v0.9.5"
 FILE="XrayR-linux-64.zip"
-BASE_URL="https://github.com/acfrr/XrayR11/releases/download/${TAG}"
+# Trỏ link về repo cá nhân của bạn
+BASE_URL="https://github.com/pkd11011/XrayR-release/releases/download/${TAG}"
+# ----------------------
+
 INSTALL_DIR="/usr/local/XrayR"
 CONFIG_DIR="/etc/XrayR"
 TMP_DIR="/tmp/xrayr-install"
 
 if [ "$(id -u)" != "0" ]; then
-  echo "请用 root 运行"
+  echo "Vui lòng chạy với quyền root (sudo su)"
   exit 1
 fi
 
-echo "==> 安装依赖"
+echo "==> Cài đặt phụ thuộc"
 apt update
 apt install -y wget unzip curl ca-certificates
 
-echo "==> 下载预编译包"
+echo "==> Tải bản cài đặt từ pkd11011"
 rm -rf "${TMP_DIR}"
 mkdir -p "${TMP_DIR}"
 cd "${TMP_DIR}"
 wget -O "${FILE}" "${BASE_URL}/${FILE}"
 
-echo "==> 解压安装"
+echo "==> Giải nén và cài đặt"
 unzip -o "${FILE}"
 
 mkdir -p "${INSTALL_DIR}"
@@ -36,7 +40,7 @@ elif [ -f ./XrayR/XrayR ]; then
 else
   BIN_PATH="$(find . -type f -name XrayR | head -n 1 || true)"
   if [ -z "${BIN_PATH}" ]; then
-    echo "没找到 XrayR 可执行文件"
+    echo "Không tìm thấy file thực thi XrayR"
     exit 1
   fi
   cp "${BIN_PATH}" "${INSTALL_DIR}/XrayR"
@@ -49,7 +53,7 @@ if [ -n "${CFG_PATH}" ]; then
   cp -n "${CFG_PATH}" "${CONFIG_DIR}/config.yml" || true
 fi
 
-echo "==> 完成"
-echo "程序路径: ${INSTALL_DIR}/XrayR"
-echo "配置路径: ${CONFIG_DIR}/config.yml"
-echo "测试命令: ${INSTALL_DIR}/XrayR"
+echo "==> Hoàn thành!"
+echo "Đường dẫn chương trình: ${INSTALL_DIR}/XrayR"
+echo "Đường dẫn cấu hình: ${CONFIG_DIR}/config.yml"
+echo "Lệnh chạy thử: ${INSTALL_DIR}/XrayR"
